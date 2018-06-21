@@ -20310,7 +20310,7 @@ class PersonDiv extends React.Component {
             React.createElement("div", { className: "row" },
                 React.createElement(react_spinners_1.ClipLoader, { color: '#123abc', loading: this.state.users.length == undefined || this.state.users.length == 0 }),
                 this.state.users.map((user, index) => {
-                    return React.createElement("div", { className: "col-md-12", style: { color: index % 2 == 0 ? 'red' : 'green', backgroundColor: index % 2 == 0 ? 'lightgrey' : 'yellow' } }, user.email);
+                    return React.createElement("div", { className: "col-md-12", style: { color: index % 2 == 0 ? 'red' : 'green', backgroundColor: index % 2 == 0 ? 'lightgrey' : 'yellow' }, key: user.id }, user.email);
                 })));
     }
 }

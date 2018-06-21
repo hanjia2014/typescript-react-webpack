@@ -32,7 +32,7 @@ export class PersonDiv extends React.Component<Person, { editText: string, users
                     loading={this.state.users.length == undefined || this.state.users.length == 0}
                 />
                 {this.state.users.map((user, index) => {
-                    return <div className="col-md-12" style={{ color: index % 2 == 0 ? 'red' : 'green', backgroundColor: index % 2 == 0 ? 'lightgrey' : 'yellow' }}>{user.email}</div>
+                    return <div className="col-md-12" style={{ color: index % 2 == 0 ? 'red' : 'green', backgroundColor: index % 2 == 0 ? 'lightgrey' : 'yellow' }} key={user.id}>{user.email}</div>
                 })}
             </div>
         </div>;
