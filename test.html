@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p>
+        <a href="test.pdf">This is a PDF</a>
+    </p>
+    <p>
+        <a href="test.pdf" target="special_iframe_target">This is a PDF opening in an iframe</a>
+    </p>
+    <p>
+        <a href="http://duckduckgo.com">An external link</a>
+    </p>
+    <p>
+        <a href="http://duckduckgo.com" target="special_iframe_target">This opens in a special iframe</a>
+    </p>
+    <p>
+        <iframe width="200px" height="200px" frameborder="0" id="special_iframe_target">
+
+        </iframe>
+    </p>
+    <script>
+        var pdfAnchors = document.querySelectorAll("a[href$='.pdf']");
+
+        for (var i = 0; i < pdfAnchors.length; i++) {
+            pdfAnchors[i].target = pdfAnchors[i].target || "_new";
+        }
+
+        for (var i = 0; i < document.links.length; i++) {
+            var link = document.links[i];
+            var linkHost = link.href.split("/")[2];
+            if (linkHost !== window.location.host) {
+                link.target = link.target || "_external"
+            }
+        }
+
+    </script>
+</body>
+
+</html>

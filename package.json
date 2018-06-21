@@ -1,0 +1,25 @@
+{
+  "name": "typescript-react-webpack",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "ts-loader": "^3.3.1",
+    "typescript": "^2.6.2",
+    "typings": "^2.1.1",
+    "webpack": "^3.10.0",
+    "immutable": "^3.8.2",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
+  },
+  "dependencies": {
+    "@types/google-map-react": "^0.23.0",
+    "@types/react": "^16.0.34",
+    "@types/react-dom": "^16.0.3",
+    "axios": "^0.17.1",
+    "google-map-react": "^0.29.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-spinners": "^0.3.2"
+  }
+}
