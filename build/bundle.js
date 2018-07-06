@@ -20178,6 +20178,7 @@ const Person_1 = __webpack_require__(41);
 const Animal_1 = __webpack_require__(42);
 const Person_2 = __webpack_require__(43);
 const Animal_2 = __webpack_require__(97);
+const Menu_1 = __webpack_require__(98);
 const MyDynamicView = (props) => {
     const { flag, property_one, property_two } = props;
     return flag ? React.createElement("div", null,
@@ -20197,10 +20198,30 @@ const MyDynamicView = (props) => {
                 property_one);
 };
 class Hello extends React.Component {
-    constructor() {
-        super(...arguments);
+    constructor(props) {
+        super(props);
         this.person = new Person_1.Person();
         this.list = new Array();
+        this.menuItems = new Array();
+        this.onItemOneClick = () => {
+            console.log("Item One Click");
+        };
+        this.onItemTwoClick = () => {
+            console.log("Item Two Click");
+        };
+        let itemOne = {
+            title: "One",
+            onItemClick: this.onItemOneClick
+        };
+        let itemTwo = {
+            title: "Two",
+            onItemClick: this.onItemTwoClick
+        };
+        this.menuItems.push(itemOne);
+        this.menuItems.push(itemTwo);
+        this.menuProps = {
+            menuItems: this.menuItems
+        };
     }
     render() {
         this.person.name = "John Doe";
@@ -20214,6 +20235,8 @@ class Hello extends React.Component {
         let animal = new Animal_1.Animal();
         animal.species = "Mammal";
         return React.createElement("div", null,
+            React.createElement("div", { id: "menu" },
+                React.createElement(Menu_1.MenuComponent, Object.assign({}, this.menuProps))),
             React.createElement("div", { className: "row" },
                 React.createElement(Person_2.PersonDiv, Object.assign({}, this.person)),
                 div,
@@ -26271,6 +26294,47 @@ class AnimalComponent extends React.Component {
     }
 }
 exports.AnimalComponent = AnimalComponent;
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+const MenuItem_1 = __webpack_require__(99);
+class MenuComponent extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return React.createElement("ul", null, this.props.menuItems.map((item, index) => {
+            return React.createElement(MenuItem_1.MenuItemComponent, Object.assign({}, item, { key: index }));
+        }));
+    }
+}
+exports.MenuComponent = MenuComponent;
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(0);
+class MenuItemComponent extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return React.createElement("li", { onClick: this.props.onItemClick }, this.props.title);
+    }
+}
+exports.MenuItemComponent = MenuItemComponent;
 
 
 /***/ })

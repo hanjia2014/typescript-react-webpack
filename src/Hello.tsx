@@ -3,6 +3,8 @@ import { Person } from "./models/Person";
 import { Animal } from "./models/Animal";
 import { PersonDiv } from "./Person";
 import { AnimalComponent } from './Animal';
+import { MenuComponent, IMenuProps } from './Menu';
+import { MenuItemComponent, IMenuItemProps } from './MenuItem';
 
 const MyDynamicView = (props: { flag: boolean, property_one: string, property_two: string }) => {
     const { flag, property_one, property_two } = props;
@@ -19,6 +21,35 @@ interface HelloProps {
 export class Hello extends React.Component<HelloProps, {}> {
     person: Person = new Person();
     private list: Array<any> = new Array();
+    private menuItems: Array<IMenuItemProps> = new Array();
+    private menuProps: IMenuProps;
+    constructor(props: HelloProps){
+        super(props);
+        let itemOne = {
+            title: "One",
+            onItemClick: this.onItemOneClick
+        };
+
+        let itemTwo = {
+            title: "Two",
+            onItemClick: this.onItemTwoClick
+        };
+
+        this.menuItems.push(itemOne);
+        this.menuItems.push(itemTwo);
+        this.menuProps = {
+            menuItems: this.menuItems
+        };
+    }
+
+    onItemOneClick = () => {
+        console.log("Item One Click");
+    };
+
+    onItemTwoClick = () => {
+        console.log("Item Two Click");
+    };
+
     render() {
         this.person.name = "John Doe";
         this.person.age = 39;
@@ -31,6 +62,9 @@ export class Hello extends React.Component<HelloProps, {}> {
         let animal = new Animal();
         animal.species = "Mammal";
         return <div>
+            <div id="menu">
+                <MenuComponent {...this.menuProps}></MenuComponent>
+            </div>
             <div className="row">
                 <PersonDiv {...this.person}>
                 </PersonDiv>

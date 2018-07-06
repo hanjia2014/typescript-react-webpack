@@ -5,18 +5,19 @@ export interface IMenuProps {
     menuItems: Array<IMenuItemProps>;
 }
 export class MenuComponent extends React.Component<IMenuProps> {
-    constructor(props: IMenuProps){
+    constructor(props: IMenuProps) {
         super(props);
     }
 
     render() {
 
         return <ul>
-            {this.props.menuItems.forEach(
-                (item: IMenuItemProps) => {
-                    return (<MenuItemComponent {...item}></MenuItemComponent>);
-                }
-            )};
+                {
+                    this.props.menuItems.map(
+                        (item: IMenuItemProps, index) => {
+                            return <MenuItemComponent {...item} key={index}></MenuItemComponent>
+                        }
+                )}
         </ul>
     }
 }
