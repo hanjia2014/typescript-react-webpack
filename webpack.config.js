@@ -37,7 +37,7 @@ var config = {
      * the test. Then it will apply the loader to that file. I haven't
      * installed ts-loader yet, but will do that shortly.
      */
-    loaders: [
+    rules: [
       {
         test: /\.tsx?$/,
         loader: "ts-loader",
